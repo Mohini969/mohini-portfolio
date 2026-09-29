@@ -1,11 +1,12 @@
 import React from "react";
-import profileImg from "../../assets/hero.png";
+import { Link } from "react-router-dom";
+import profileImg from "../../assets/mohini.png";
 import { motion as Motion } from "framer-motion";
 import { ArrowDown, Download, Mail, MapPin, Sparkles } from "lucide-react";
 import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
 
-const Hero = () => {
+const Hero = ({ onNavigate }) => {
   const socialLinks = [
     { label: "GitHub", href: "https://github.com/Mohini969", icon: <FaGithub /> },
     {
@@ -72,7 +73,7 @@ const Hero = () => {
           >
             <span className="theme-muted">I build as a </span>
             <span className="text-cyan-400">
-              <TypeAnimation sequence={["Full Stack Developer", 2000, "Java Developer", 2000]} repeat={Infinity} />
+              <TypeAnimation sequence={["Full Stack Developer", 2000]} repeat={Infinity} />
             </span>
           </Motion.div>
 
@@ -97,12 +98,26 @@ const Hero = () => {
           </Motion.div>
 
           <Motion.div variants={item} className="mt-9 flex flex-col gap-4 sm:flex-row">
-            <a href="#contact" className="primary-btn">
+            <a
+              href="/contact"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigate) onNavigate("/contact");
+              }}
+              className="primary-btn"
+            >
               Hire Me
               <ArrowDown size={18} />
             </a>
 
-            <a href="#projects" className="primary-btn">
+            <a
+              href="/projects"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigate) onNavigate("/projects");
+              }}
+              className="primary-btn"
+            >
               Projects
               <ArrowDown size={18} />
             </a>
@@ -133,9 +148,13 @@ const Hero = () => {
 
         <Motion.div
           initial={{ opacity: 0, x: 36 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.75, delay: 0.18, ease: "easeOut" }}
-          className="relative mx-auto w-full max-w-[30rem]"
+          animate={{ opacity: 1, x: 0, y: [0, -8, 0] }}
+          transition={{
+            opacity: { duration: 0.75, delay: 0.18, ease: "easeOut" },
+            x: { duration: 0.75, delay: 0.18, ease: "easeOut" },
+            y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+          }}
+          className="relative mx-auto w-full max-w-[22rem] sm:max-w-[24rem]"
         >
           {/* <div className="absolute -right-4 top-6 hidden rounded-2xl border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-sm font-semibold text-[var(--color-accent-2)] backdrop-blur-xl sm:block">
             Clean UI + scalable code
@@ -144,13 +163,13 @@ const Hero = () => {
             Recruiter-ready portfolio
           </div> */}
 
-          <div className="relative overflow-hidden rounded-[2rem] border border-cyan-400/20 bg-white/[.04] p-3 shadow-[0_28px_80px_rgba(0,0,0,.24)] backdrop-blur-xl">
-            <div className="absolute inset-x-6 top-6 h-px bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent" />
+          <div className="relative overflow-hidden rounded-[2rem] border border-purple-500/30 bg-slate-950/40 p-3 shadow-[0_0_35px_rgba(168,85,247,0.25)] backdrop-blur-xl transition-all duration-500 hover:border-purple-400/60 hover:shadow-[0_0_50px_rgba(168,85,247,0.4)]">
+            <div className="absolute inset-x-6 top-6 h-px bg-gradient-to-r from-transparent via-purple-400/60 to-transparent" />
             <img
               src={profileImg}
               alt="Mohini"
               loading="eager"
-              className="aspect-[4/5] w-full rounded-[1.5rem] object-cover object-top"
+              className="aspect-[4/5] w-full rounded-[1.5rem] object-cover object-[center_22%] scale-[1.06] transition-transform duration-500 hover:scale-[1.08]"
             />
           </div>
 

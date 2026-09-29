@@ -27,6 +27,12 @@ body{
     font-family:'Inter',sans-serif;
 }
 
+@media (pointer: fine) and (min-width: 1024px) {
+    body, a, button, input, textarea, select, label, [role="button"] {
+        cursor: none !important;
+    }
+}
+
 :root,
 html.dark{
     --color-bg:#08111f;
@@ -105,31 +111,35 @@ html.light{
     }
 
     .app-grid{
-        background-image:linear-gradient(var(--color-grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--color-grid-line) 1px, transparent 1px);
-        background-size:44px 44px;
-        mask-image:linear-gradient(to bottom, rgba(0,0,0,.96), rgba(0,0,0,.36) 58%, transparent 96%);
-        pointer-events:none;
+        @apply fixed inset-0 pointer-events-none z-0;
+        background-image:
+            linear-gradient(var(--color-grid-line) 1px, transparent 1px),
+            linear-gradient(90deg, var(--color-grid-line) 1px, transparent 1px);
+        background-size: 40px 40px;
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.95));
     }
 
     .ambient-field{
-        @apply absolute inset-0 pointer-events-none;
+        @apply fixed inset-0 pointer-events-none z-0 transition-opacity duration-700;
         background:
-            radial-gradient(circle at 20% 18%, rgba(34,211,238,.14), transparent 24%),
-            radial-gradient(circle at 82% 8%, rgba(52,211,153,.1), transparent 22%),
-            linear-gradient(135deg, rgba(251,191,36,.05), transparent 36%),
+            radial-gradient(circle at 15% 15%, rgba(34, 211, 238, 0.12), transparent 35%),
+            radial-gradient(circle at 85% 38%, rgba(168, 85, 247, 0.10), transparent 35%),
+            radial-gradient(circle at 20% 68%, rgba(34, 211, 238, 0.08), transparent 35%),
+            radial-gradient(circle at 82% 90%, rgba(168, 85, 247, 0.09), transparent 32%),
             var(--color-bg);
     }
 
     html.light .ambient-field{
         background:
-            radial-gradient(circle at 20% 18%, rgba(8,145,178,.1), transparent 26%),
-            radial-gradient(circle at 82% 8%, rgba(5,150,105,.08), transparent 24%),
-            linear-gradient(135deg, rgba(217,119,6,.06), transparent 40%),
+            radial-gradient(circle at 15% 15%, rgba(8, 145, 178, 0.07), transparent 35%),
+            radial-gradient(circle at 85% 38%, rgba(147, 51, 234, 0.05), transparent 35%),
+            radial-gradient(circle at 20% 68%, rgba(8, 145, 178, 0.05), transparent 35%),
+            radial-gradient(circle at 82% 90%, rgba(147, 51, 234, 0.05), transparent 32%),
             var(--color-bg);
     }
 
     .noise-layer{
-        @apply absolute inset-0 pointer-events-none opacity-[.045];
+        @apply fixed inset-0 pointer-events-none z-0 opacity-[0.035];
         background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
     }
 
@@ -159,6 +169,10 @@ html.light{
         @apply relative py-24 px-6 lg:px-20 overflow-hidden transition-colors duration-500;
         background:transparent;
         color:var(--color-heading);
+    }
+
+    section[id]{
+        scroll-margin-top:96px;
     }
 
     /* Section Heading */

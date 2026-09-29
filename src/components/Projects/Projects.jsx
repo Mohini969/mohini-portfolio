@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion as Motion } from "framer-motion";
 import {
@@ -18,7 +17,7 @@ const Projects = () => {
       icon: <FaJava />,
       description:
         "Developed a console-based Flight Management System that manages flight schedules, passenger bookings, cancellations, and user information using Object-Oriented Programming and file handling.",
-      github: "#",
+      github: "https://github.com/Mohini969",
       demo: "#",
     },
     {
@@ -27,7 +26,7 @@ const Projects = () => {
       icon: <FaReact />,
       description:
         "Built a full-stack banking application with secure authentication, account management, balance tracking, and transaction history using the MERN Stack.",
-      github: "#",
+      github: "https://github.com/Mohini969",
       demo: "#",
     },
     {
@@ -36,7 +35,7 @@ const Projects = () => {
       icon: <FaRobot />,
       description:
         "Designed an AI-powered recommendation platform that suggests personalized movies and music based on user interests and preferences through an interactive interface.",
-      github: "#",
+      github: "https://github.com/Mohini969",
       demo: "#",
     },
     {
@@ -45,10 +44,50 @@ const Projects = () => {
       icon: <FaUsers />,
       description:
         "Developed a platform connecting brands with creators, enabling campaign management, creator profiles, collaboration requests, and secure authentication.",
-      github: "#",
+      github: "https://github.com/Mohini969",
       demo: "#",
     },
   ];
+
+  const renderProjectButton = (url, label, icon, isPrimary) => {
+    const isAvailable = url && url !== "#" && url.trim() !== "";
+
+    if (isAvailable) {
+      return (
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`relative inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-1 ${
+            isPrimary
+              ? "primary-btn hover:shadow-[0_0_25px_rgba(34,211,238,0.4)]"
+              : "secondary-btn hover:border-cyan-400 hover:text-cyan-400 hover:shadow-[0_0_20px_rgba(34,211,238,0.25)]"
+          }`}
+        >
+          {icon}
+          {label}
+        </a>
+      );
+    }
+
+    return (
+      <div className="group/tooltip relative inline-block">
+        <button
+          disabled
+          aria-disabled="true"
+          className={`inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold opacity-50 cursor-not-allowed transition-all duration-300 ${
+            isPrimary ? "primary-btn" : "secondary-btn"
+          }`}
+        >
+          {icon}
+          {label}
+        </button>
+        <span className="absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg border border-cyan-400/30 bg-slate-950 px-2.5 py-1 text-xs font-semibold text-cyan-300 shadow-xl opacity-0 transition-opacity duration-200 group-hover/tooltip:opacity-100 pointer-events-none z-20">
+          Coming Soon
+        </span>
+      </div>
+    );
+  };
 
   return (
     <section id="projects" className="section">
@@ -122,25 +161,8 @@ const Projects = () => {
                 <p className="theme-muted mt-4 leading-7">{project.description}</p>
 
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noreferrer"
-                    className="secondary-btn !rounded-xl !px-5 !py-2.5 text-sm"
-                >
-                  <FaGithub />
-                  GitHub
-                </a>
-
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noreferrer"
-                    className="primary-btn !rounded-xl !px-5 !py-2.5 text-sm"
-                >
-                    <ArrowUpRight size={17} />
-                  Live Demo
-                </a>
+                  {renderProjectButton(project.github, "GitHub", <FaGithub />, false)}
+                  {renderProjectButton(project.demo, "Live Demo", <ArrowUpRight size={17} />, true)}
                 </div>
               </div>
             </Motion.article>

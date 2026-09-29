@@ -9,7 +9,7 @@ const Education = () => {
       degree: "B.Tech in Computer Science & Engineering",
       school: "GIFT Autonomous College",
       location: "Bhubaneswar, Odisha",
-      result: "CGPA : 8.88",
+      result: "CGPA : 8.95",
       description:
         "Currently pursuing B.Tech in Computer Science and Engineering with a strong focus on Full Stack Development, Java, and Backend Technologies.",
     },
